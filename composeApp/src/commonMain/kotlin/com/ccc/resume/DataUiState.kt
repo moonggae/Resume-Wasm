@@ -1,9 +1,7 @@
 package com.ccc.resume
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Colors
 import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
@@ -31,7 +29,23 @@ sealed class DataUiState {
 @Serializable
 data class Page(
     val contents: List<Content>
-)
+) {
+    val composable: @Composable () -> Unit
+        get() = {
+            Column(
+                modifier = Modifier
+                    .width(1000.dp)
+                    .height((1000 * 1.414).dp)
+                    .padding(bottom = 8.dp)
+                    .background(MaterialTheme.colors.surface)
+                    .padding(80.dp),
+            ) {
+                contents.forEach { content ->
+                    content.composable()
+                }
+            }
+        }
+}
 
 @Serializable
 sealed class Content {

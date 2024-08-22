@@ -2,6 +2,9 @@ package com.ccc.resume
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.Colors
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -49,17 +52,9 @@ fun App(
                         onClickDownload = { onClickDownload() }
                     )
 
-                    state.pages.forEach { page ->
-                        Column(
-                            modifier = Modifier
-                                .width(1000.dp)
-                                .height((1000 * 1.414).dp)
-                                .background(MaterialTheme.colors.surface)
-                                .padding(80.dp),
-                        ) {
-                            page.contents.forEach { content ->
-                                content.composable()
-                            }
+                    Column(Modifier.verticalScroll(rememberScrollState())) {
+                        state.pages.forEach { page ->
+                            page.composable()
                         }
                     }
                 }
