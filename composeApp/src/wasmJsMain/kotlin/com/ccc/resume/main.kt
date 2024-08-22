@@ -10,3 +10,11 @@ fun main() {
         App()
     }
 }
+
+actual fun onClickCode() {
+
+}
+
+actual fun onClickDownload() {
+
+}

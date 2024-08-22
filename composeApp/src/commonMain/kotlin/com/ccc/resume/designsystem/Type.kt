@@ -32,6 +32,11 @@ fun ResumeTypography(colors: Colors = MaterialTheme.colors): Typography =
             fontWeight = FontWeight.SemiBold,
             color = colors.onSurface
         ),
+        subtitle2 = TextStyle(
+            fontSize = 16.sp,
+            fontWeight = FontWeight.Medium,
+            color = colors.onSurface
+        ),
         body1 = TextStyle(
             fontSize = 20.sp,
             fontWeight = FontWeight.Normal,
