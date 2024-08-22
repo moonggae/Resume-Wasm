@@ -5,3 +5,9 @@ html, body {
     padding: 0;
     overflow: hidden;
 }
+
+#warning_container {
+    display: none;
+    justify-content: center;
+    padding-top: 5%;
+}

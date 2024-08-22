@@ -8,5 +8,31 @@
     <script type="application/javascript" src="composeApp.js"></script>
 </head>
 <body>
+<div id="warning_container">
+    <div id="warning">
+        지원하지 않는 브라우저 입니다.
+        <br/>
+        아래 목록에 있는 브라우저로 실행해 주세요.
+        <br/>
+        - <b>iOS</b>에서는 실행할 수 없습니다.
+        <br/>
+        <ul>
+            <li><b>Chrome</b> 또는 <b>Chromium-based</b> browsers (Edge, Brave etc.): 119 이상</li>
+            <li><b>Firefox</b>: 120 이상</li>
+        </ul>
+    </div>
+</div>
 </body>
+<script type="application/javascript">
+    const unhandledError = (event, error) => {
+        if (error instanceof WebAssembly.CompileError) {
+            document.getElementById("warning_container").style.display = "flex";
+
+            const webpackOverlay = document.getElementById("webpack-dev-server-client-overlay");
+            if (webpackOverlay != null) webpackOverlay.style.display = "none";
+        }
+    }
+    addEventListener("error", (event) => unhandledError(event, event.error));
+    addEventListener("unhandledrejection", (event) => unhandledError(event, event.reason));
+</script>
 </html>
