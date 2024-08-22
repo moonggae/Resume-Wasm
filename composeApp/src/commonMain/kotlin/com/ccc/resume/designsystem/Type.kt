@@ -48,3 +48,23 @@ fun ResumeTypography(colors: Colors = MaterialTheme.colors): Typography =
             color = colors.onSurface
         )
     )
+
+
+@Composable
+fun getTextStyleFromString(string: String): TextStyle? =
+    when (string) {
+        "h1" -> MaterialTheme.typography.h1
+        "h2" -> MaterialTheme.typography.h2
+        "h3" -> MaterialTheme.typography.h3
+        "h4" -> MaterialTheme.typography.h4
+        "h5" -> MaterialTheme.typography.h5
+        "h6" -> MaterialTheme.typography.h6
+        "subtitle1" -> MaterialTheme.typography.subtitle1
+        "subtitle2" -> MaterialTheme.typography.subtitle2
+        "body1" -> MaterialTheme.typography.body1
+        "body2" -> MaterialTheme.typography.body2
+        "button" -> MaterialTheme.typography.button
+        "caption" -> MaterialTheme.typography.caption
+        "overline" -> MaterialTheme.typography.overline
+        else -> null
+    }

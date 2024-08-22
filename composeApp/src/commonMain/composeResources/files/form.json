@@ -1,0 +1,45 @@
+{
+  "title": "Resume.pdf",
+  "github": "https://github.com",
+  "pages": [
+    {
+      "contents": [
+        {
+          "type": "title",
+          "value": "Android 개발자 OOO 입니다."
+        },
+        {
+          "type": "p",
+          "value": 40
+        },
+        {
+          "type": "title",
+          "value": "Information",
+          "show_divider": true,
+          "style": "h4"
+        },
+        {
+          "type": "key_value_list",
+          "vertical_padding": 8,
+          "horizontal_padding": 40,
+          "key_style": "subtitle1",
+          "value_style": "body2",
+          "value": [
+            {
+              "key": "\uD83D\uDCE7 Email",
+              "value": "test@test.test"
+            },
+            {
+              "key": "\uD83D\uDCF1 Phone",
+              "value": "010-0000-0000"
+            },
+            {
+              "key": "\uD83D\uDC31 Github",
+              "value": "https://github.com"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

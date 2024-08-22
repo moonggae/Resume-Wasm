@@ -12,6 +12,7 @@ val ResumeColors: Colors
         surface = Color(0xFFEDF2F7),
         onSurface = Color(0xFF4A5568),
         background = Color(0xFF525659),
+        onBackground = Color(0xFFf1f1f1),
         secondary = Color(0xFF323639),
         onSecondary = Color(0xFFf1f1f1)
     )
