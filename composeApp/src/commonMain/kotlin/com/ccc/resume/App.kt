@@ -7,12 +7,16 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.ccc.resume.designsystem.ResumeTheme
 
 @Composable
 fun App() {
-    MaterialTheme {
+    ResumeTheme {
         Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-            Text("Hello, World")
+            Text(
+                text = "Hello, World",
+                style = MaterialTheme.typography.h4
+            )
         }
     }
 }

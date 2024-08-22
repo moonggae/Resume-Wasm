@@ -26,7 +26,6 @@ kotlin {
     }
 
     sourceSets {
-        
         commonMain.dependencies {
             implementation(compose.runtime)
             implementation(compose.foundation)
@@ -40,4 +39,8 @@ kotlin {
     }
 }
 
-
+compose.resources {
+    publicResClass = true
+    packageOfResClass = "com.ccc.resume.resources"
+    generateResClass = always
+}
