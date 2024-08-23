@@ -36,7 +36,6 @@ data class Page(
                 modifier = Modifier
                     .width(1000.dp)
                     .height((1000 * 1.414).dp)
-                    .padding(bottom = 8.dp)
                     .background(MaterialTheme.colors.surface)
                     .padding(80.dp),
             ) {

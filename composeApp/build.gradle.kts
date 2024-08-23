@@ -42,6 +42,10 @@ kotlin {
             implementation(libs.emoji)
             implementation(libs.emoji.material)
         }
+
+        wasmJsMain.dependencies {
+            implementation(npm("jspdf", "2.5.1"))
+        }
     }
 }
 

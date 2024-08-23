@@ -1,10 +1,12 @@
 package com.ccc.resume
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Colors
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -21,7 +23,7 @@ import com.ccc.resume.designsystem.ResumeTheme
 fun App(
     viewModel: DataViewModel = viewModel { DataViewModel() },
     onClickCode: (url: String) -> Unit,
-    onClickDownload: () -> Unit
+    onClickDownload: (pages: List<Page>, filename: String) -> Unit
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
@@ -49,12 +51,15 @@ fun App(
                     AppBar(
                         title = state.title,
                         onClickCode = { onClickCode(state.github) },
-                        onClickDownload = { onClickDownload() }
+                        onClickDownload = { onClickDownload(state.pages, state.title) }
                     )
 
                     Column(Modifier.verticalScroll(rememberScrollState())) {
-                        state.pages.forEach { page ->
+                        state.pages.forEachIndexed { index, page ->
                             page.composable()
+                            if (index != state.pages.lastIndex) {
+                                Spacer(Modifier.height(8.dp))
+                            }
                         }
                     }
                 }
