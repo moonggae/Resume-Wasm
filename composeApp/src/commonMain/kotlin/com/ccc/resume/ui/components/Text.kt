@@ -171,10 +171,9 @@ public fun TextWithEmoji(
             val fountEmojiList: List<FoundEmoji>? = EmojiService.get()?.finder?.findEmoji(parsingText)?.toList()
 
             var lastIndex = 0
-
             fountEmojiList?.forEach { foundEmoji ->
                 if (foundEmoji.start > lastIndex) {
-                    append(parsingText.substring(lastIndex, foundEmoji.start))
+                    append(text.subSequence(lastIndex, foundEmoji.start))
                 }
 
                 withStyle(SpanStyle(fontFamily = NotoColorEmoji)) {
@@ -185,7 +184,7 @@ public fun TextWithEmoji(
             }
 
             if (lastIndex < parsingText.length) {
-                append(parsingText.substring(lastIndex))
+                append(text.subSequence(lastIndex, text.lastIndex + 1))
             }
         },
         modifier = modifier,
