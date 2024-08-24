@@ -1,5 +1,6 @@
 package com.ccc.resume.util
 
+import org.khronos.webgl.ArrayBuffer
 import org.khronos.webgl.Uint8Array
 import org.khronos.webgl.get
 import org.khronos.webgl.set
@@ -36,3 +37,5 @@ fun <T : JsAny?> jsArrayOf(vararg elements: T): JsArray<T> {
 
     return array
 }
+
+fun ArrayBuffer.toByteArray(): ByteArray = Uint8Array(this).toByteArray()

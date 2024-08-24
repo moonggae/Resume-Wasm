@@ -17,7 +17,6 @@ kotlin {
                 outputFileName = "composeApp.js"
                 devServer = (devServer ?: KotlinWebpackConfig.DevServer()).apply {
                     static = (static ?: mutableListOf()).apply {
-                        // Serve sources to debug inside browser
                         add(projectDirPath)
                     }
                 }
@@ -41,6 +40,7 @@ kotlin {
             implementation(libs.kotlinx.serialization.json)
             implementation(libs.emoji)
             implementation(libs.emoji.material)
+            implementation(libs.ktor.client.core)
         }
 
         wasmJsMain.dependencies {
