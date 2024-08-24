@@ -1,6 +1,6 @@
 {
   "title": "Resume.pdf",
-  "github": "https://github.com",
+  "github": "https://github.com/moonggae",
   "pages": [
     {
       "contents": [
@@ -20,7 +20,7 @@
         },
         {
           "type": "key_value_list",
-          "vertical_padding": 8,
+          "vertical_padding": 12,
           "horizontal_padding": 40,
           "key_style": "subtitle1",
           "value_style": "body2",
@@ -35,7 +35,273 @@
             },
             {
               "key": "\uD83D\uDC31 Github",
-              "value": "https://github.com"
+              "value": "https://github.com/moonggae"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "value": 48
+        },
+        {
+          "type": "title",
+          "value": "Side Projects",
+          "show_divider": true,
+          "style": "h4"
+        },
+        {
+          "type": "key_value_list",
+          "vertical_padding": 12,
+          "horizontal_padding": 40,
+          "key_style": "subtitle1",
+          "value_style": "body2",
+          "value": [
+            {
+              "key": "Resume",
+              "value": "https://github.com/moonggae/Resume-Wasm"
+            },
+            {
+              "key": "Nocopyright Music Player",
+              "value": "https://github.com/moonggae/NoCopyrightSounds-Android"
+            },
+            {
+              "key": "Remind",
+              "value": "https://github.com/moonggae/remind-android"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "value": 52
+        },
+        {
+          "type": "title",
+          "value": "Skills For Android",
+          "show_divider": true,
+          "style": "h4"
+        },
+        {
+          "type": "key_value_list",
+          "vertical_padding": 16,
+          "horizontal_padding": 100,
+          "key_style": "subtitle1",
+          "value_style": "body1",
+          "value": [
+            {
+              "key": "Language",
+              "value": "Kotlin"
+            },
+            {
+              "key": "Layout",
+              "value": "Compose, XML"
+            },
+            {
+              "key": "Architecture",
+              "value": "MVVM"
+            },
+            {
+              "key": "DI",
+              "value": "Hilt"
+            },
+            {
+              "key": "Asynchronous",
+              "value": "Coroutines, Flow"
+            },
+            {
+              "key": "Networking",
+              "value": "Retrofit, Socket.io"
+            },
+            {
+              "key": "Local Data",
+              "value": "Room, SharedPreference"
+            },
+            {
+              "key": "Image",
+              "value": "Coil, Glide"
+            },
+            {
+              "key": "Notification",
+              "value": "Firebase FCM"
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "value": 32
+        },
+        {
+          "type": "text_list",
+          "vertical_padding": 16,
+          "style": "body1",
+          "show_dot": true,
+          "values": [
+            "`Compose`, `XML`을 이용해 UI를 작성 할 수 있습니다.",
+            "`권장 앱 아키텍처`를 적용할 수 있습니다. ",
+            "`Coroutines`, `Flow`를 이용해 비동기 프로그래밍를 구현할 수 있습니다.",
+            "`Retrofit`을 이용한 `http`통신 및 `Socket.io`를 이용한 `WebSocket` 통신을 할 수 있습니다.",
+            "`Room`, `SharedPreference`를 이용해 로컬 데이터를 관리할 수 있습니다.",
+            "`Hilt`를 이용해 종속성 주입을 사용할 수 있습니다. ",
+            "앱 권한을 관리하고 `Firebase FCM`을 이용해 사용자에게 알림을 전송할 수 있습니다. ",
+            "`Coil`, `Glide`를 이용해 이미지 및 SVG를 표출할 수 있습니다. ",
+            "배포시 `ProGuard`를 이용해 코드를 축소하고 난독화 할 수 있습니다."
+          ]
+        }
+      ]
+    },
+    {
+      "contents": [
+        {
+          "type": "title",
+          "value": "Work Experience (2years 9months)",
+          "show_divider": true,
+          "style": "h4"
+        },
+        {
+          "type": "title",
+          "value": "Company A (2020-11 ~ 2022-08)",
+          "style": "h5"
+        },
+        {
+          "type": "p",
+          "value": 8
+        },
+        {
+          "type": "text_tree_list",
+          "vertical_paddings": [
+            12,
+            4,
+            0
+          ],
+          "values": [
+            {
+              "text": "`Project A`",
+              "children": [
+                {
+                  "text": "Something 1"
+                },
+                {
+                  "text": "Something 2",
+                  "children": [
+                    {
+                      "text": "Something Detail 1"
+                    },
+                    {
+                      "text": "Something Detail 2"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "text": "`Project B`",
+              "children": [
+                {
+                  "text": "Something 1"
+                },
+                {
+                  "text": "Something 2"
+                },
+                {
+                  "text": "Something 3"
+                },
+                {
+                  "text": "Something 4"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "value": 32
+        },
+        {
+          "type": "title",
+          "value": "Company B (2022-8 ~ 2023-06)",
+          "style": "h5"
+        },
+        {
+          "type": "p",
+          "value": 8
+        },
+        {
+          "type": "text_tree_list",
+          "values": [
+            {
+              "text": "`Project C`",
+              "children": [
+                {
+                  "text": "Something 1"
+                },
+                {
+                  "text": "Something 2"
+                },
+                {
+                  "text": "Something 3"
+                },
+                {
+                  "text": "Something 4"
+                }
+              ]
+            },
+            {
+              "text": "`Project D`",
+              "children": [
+                {
+                  "text": "Something 1"
+                },
+                {
+                  "text": "Something 2"
+                },
+                {
+                  "text": "Something 3"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "p",
+          "value": 64
+        },
+        {
+          "type": "title",
+          "value": "Education",
+          "show_divider": true,
+          "style": "h4"
+        },
+        {
+          "type": "text_list",
+          "style": "body1",
+          "show_dot": false,
+          "values": [
+            "OO대학교 컴퓨터공학과 학사 졸업 (2016년 02월 ~ 2022년 02월)"
+          ]
+        },
+        {
+          "type": "p",
+          "value": 52
+        },
+        {
+          "type": "title",
+          "value": "Others",
+          "show_divider": true,
+          "style": "h4"
+        },
+        {
+          "type": "key_value_list",
+          "vertical_padding": 12,
+          "horizontal_padding": 40,
+          "key_style": "subtitle1",
+          "value_style": "body2",
+          "value": [
+            {
+              "key": "00 스터디 모임 참여",
+              "value": "https://github.com/moonggae"
+            },
+            {
+              "key": "00 스터디 모임 참여",
+              "value": "https://github.com/moonggae"
             }
           ]
         }
