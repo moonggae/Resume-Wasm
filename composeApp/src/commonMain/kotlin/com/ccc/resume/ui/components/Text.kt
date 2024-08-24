@@ -1,4 +1,4 @@
-package com.ccc.resume.components
+package com.ccc.resume.ui.components
 
 import androidx.compose.foundation.text.InlineTextContent
 import androidx.compose.material.LocalContentAlpha
@@ -91,7 +91,7 @@ public fun TextHyperlink(
 }
 
 @Composable
-public fun TextWithHighlight(
+public fun ResumeText(
     text: String,
     modifier: Modifier = Modifier,
     color: Color = Color.Unspecified,

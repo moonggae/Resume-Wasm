@@ -1,4 +1,4 @@
-package com.ccc.resume
+package com.ccc.resume.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

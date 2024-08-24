@@ -1,4 +1,4 @@
-package com.ccc.resume.components
+package com.ccc.resume.ui.components
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
@@ -53,7 +53,7 @@ private fun TableColumn(
                     }
                 )
             } else {
-                TextWithHighlight(
+                ResumeText(
                     text = item,
                     style = style,
                     modifier = Modifier.conditional(index != items.lastIndex) {

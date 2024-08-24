@@ -7,6 +7,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.ccc.resume.data.Ktor
 import com.ccc.resume.data.PDFRepository
+import com.ccc.resume.ui.App
 import kotlinx.browser.document
 import kotlinx.browser.window
 

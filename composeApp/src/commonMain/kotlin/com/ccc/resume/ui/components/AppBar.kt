@@ -1,4 +1,4 @@
-package com.ccc.resume.components
+package com.ccc.resume.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*

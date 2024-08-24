@@ -1,4 +1,4 @@
-package com.ccc.resume
+package com.ccc.resume.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -16,8 +16,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.ccc.resume.components.AppBar
 import com.ccc.resume.designsystem.ResumeTheme
+import com.ccc.resume.ui.components.AppBar
+import com.ccc.resume.ui.contents.Page
 import kotlinx.coroutines.launch
 import org.kodein.emoji.compose.EmojiService
 

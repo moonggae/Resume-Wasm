@@ -1,4 +1,4 @@
-package com.ccc.resume
+package com.ccc.resume.ui
 
 sealed class PDFDownloadUiState {
     data object Idle : PDFDownloadUiState()
