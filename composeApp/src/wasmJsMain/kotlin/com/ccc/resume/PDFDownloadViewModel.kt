@@ -11,7 +11,7 @@ import com.ccc.resume.designsystem.ResumeTheme
 import com.ccc.resume.external.getArrayBuffer
 import com.ccc.resume.external.jsPDF
 import com.ccc.resume.ui.PDFDownloadUiState
-import com.ccc.resume.ui.Page
+import com.ccc.resume.ui.contents.Page
 import com.ccc.resume.util.toBlob
 import com.ccc.resume.util.toByteArray
 import kotlinx.browser.document
