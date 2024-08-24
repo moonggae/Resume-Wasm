@@ -21,7 +21,10 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import org.kodein.emoji.compose.m2.TextWithPlatformEmoji
+import com.ccc.resume.designsystem.NotoColorEmoji
+import org.kodein.emoji.FoundEmoji
+import org.kodein.emoji.compose.EmojiService
+import org.kodein.emoji.findEmoji
 
 @Composable
 public fun TextHyperlink(
@@ -108,7 +111,7 @@ public fun TextWithHighlight(
     onTextLayout: (TextLayoutResult) -> Unit = {},
     style: TextStyle = LocalTextStyle.current,
 ) {
-    TextWithPlatformEmoji(
+    TextWithEmoji(
         text = buildAnnotatedString {
             val parts = text.split("`")
             parts.forEachIndexed { index, part ->
@@ -119,6 +122,70 @@ public fun TextWithHighlight(
                         append(part)
                     }
                 }
+            }
+        },
+        modifier = modifier,
+        color = color,
+        fontSize = fontSize,
+        fontStyle = fontStyle,
+        fontWeight = fontWeight,
+        fontFamily = fontFamily,
+        letterSpacing = letterSpacing,
+        textDecoration = textDecoration,
+        textAlign = textAlign,
+        lineHeight = lineHeight,
+        overflow = overflow,
+        softWrap = softWrap,
+        maxLines = maxLines,
+        minLines = minLines,
+        inlineContent = inlineContent,
+        onTextLayout = onTextLayout,
+        style = style
+    )
+}
+
+@Composable
+public fun TextWithEmoji(
+    text: AnnotatedString,
+    modifier: Modifier = Modifier,
+    color: Color = Color.Unspecified,
+    fontSize: TextUnit = TextUnit.Unspecified,
+    fontStyle: FontStyle? = null,
+    fontWeight: FontWeight? = null,
+    fontFamily: FontFamily? = null,
+    letterSpacing: TextUnit = TextUnit.Unspecified,
+    textDecoration: TextDecoration? = null,
+    textAlign: TextAlign? = null,
+    lineHeight: TextUnit = TextUnit.Unspecified,
+    overflow: TextOverflow = TextOverflow.Clip,
+    softWrap: Boolean = true,
+    maxLines: Int = Int.MAX_VALUE,
+    minLines: Int = 1,
+    inlineContent: Map<String, InlineTextContent> = mapOf(),
+    onTextLayout: (TextLayoutResult) -> Unit = {},
+    style: TextStyle = LocalTextStyle.current,
+) {
+    Text(
+        text = buildAnnotatedString {
+            val parsingText = text.text
+            val fountEmojiList: List<FoundEmoji>? = EmojiService.get()?.finder?.findEmoji(parsingText)?.toList()
+
+            var lastIndex = 0
+
+            fountEmojiList?.forEach { foundEmoji ->
+                if (foundEmoji.start > lastIndex) {
+                    append(parsingText.substring(lastIndex, foundEmoji.start))
+                }
+
+                withStyle(SpanStyle(fontFamily = NotoColorEmoji)) {
+                    append(parsingText.substring(foundEmoji.start, foundEmoji.end))
+                }
+
+                lastIndex = foundEmoji.end
+            }
+
+            if (lastIndex < parsingText.length) {
+                append(parsingText.substring(lastIndex))
             }
         },
         modifier = modifier,

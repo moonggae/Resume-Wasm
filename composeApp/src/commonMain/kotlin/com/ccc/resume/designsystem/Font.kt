@@ -4,16 +4,7 @@ package com.ccc.resume.designsystem
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import com.ccc.resume.resources.Pretendard_Black
-import com.ccc.resume.resources.Pretendard_Bold
-import com.ccc.resume.resources.Pretendard_ExtraBold
-import com.ccc.resume.resources.Pretendard_ExtraLight
-import com.ccc.resume.resources.Pretendard_Light
-import com.ccc.resume.resources.Pretendard_Medium
-import com.ccc.resume.resources.Pretendard_Regular
-import com.ccc.resume.resources.Pretendard_SemiBold
-import com.ccc.resume.resources.Pretendard_Thin
-import com.ccc.resume.resources.Res
+import com.ccc.resume.resources.*
 import org.jetbrains.compose.resources.Font
 
 val PretendardFont: FontFamily
@@ -55,4 +46,11 @@ val PretendardFont: FontFamily
             resource = Res.font.Pretendard_Thin,
             weight = FontWeight.Thin
         )
+    )
+
+
+val NotoColorEmoji: FontFamily
+    @Composable
+    get() = FontFamily(
+        Font(resource = Res.font.NotoColorEmoji_Regular)
     )
