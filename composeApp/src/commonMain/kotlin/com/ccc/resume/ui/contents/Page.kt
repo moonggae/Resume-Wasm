@@ -22,7 +22,10 @@ data class Page(
                     .width(1000.dp)
                     .height((1000 * 1.414).dp)
                     .background(MaterialTheme.colors.surface)
-                    .padding(80.dp),
+                    .padding(
+                        horizontal = 80.dp,
+                        vertical = 56.dp
+                    ),
             ) {
                 contents.forEach { content ->
                     content.composable()

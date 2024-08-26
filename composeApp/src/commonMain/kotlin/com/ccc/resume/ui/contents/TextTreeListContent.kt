@@ -43,17 +43,15 @@ fun TextTreeList(
 
     Column(verticalArrangement = Arrangement.spacedBy(verticalPadding.dp)) {
         items.forEach { item ->
-            Column {
-                Row(modifier = Modifier.padding(start = (level * 16).dp)) {
-                    ResumeText("•  ${item.text}")
-                }
-                item.children?.let { children ->
-                    TextTreeList(
-                        items = children,
-                        verticalPaddings = verticalPaddings,
-                        level = level + 1
-                    )
-                }
+            Row(modifier = Modifier.padding(start = (level * 16).dp)) {
+                ResumeText("•  ${item.text}")
+            }
+            item.children?.let { children ->
+                TextTreeList(
+                    items = children,
+                    verticalPaddings = verticalPaddings,
+                    level = level + 1
+                )
             }
         }
     }

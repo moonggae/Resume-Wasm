@@ -118,7 +118,7 @@ public fun ResumeText(
                 if (index % 2 == 0) {
                     append(part)
                 } else {
-                    withStyle(style = SpanStyle(fontWeight = FontWeight.ExtraBold)) {
+                    withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
                         append(part)
                     }
                 }
