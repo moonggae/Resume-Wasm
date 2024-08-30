@@ -15,9 +15,11 @@ import com.ccc.resume.ui.contents.Page
 import com.ccc.resume.util.toBlob
 import com.ccc.resume.util.toByteArray
 import kotlinx.browser.document
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.suspendCancellableCoroutine
 import org.jetbrains.skia.Image
 import org.khronos.webgl.Uint8Array
 import org.kodein.emoji.compose.EmojiService
@@ -37,6 +39,7 @@ class PDFDownloadViewModel(
     ) {
         viewModelScope.launch {
             _uiState.value = PDFDownloadUiState.Loading
+            delay(100)
             runCatching {
                 val images = renderPages(pages.map { page -> page.composable })
                 val originPDF = generatePDF(images)
