@@ -3,7 +3,11 @@ package com.ccc.resume.external
 import org.khronos.webgl.ArrayBuffer
 
 @JsModule("jspdf")
-external class jsPDF {
+external class jsPDF(
+    orientation: String = definedExternally,
+    unit: String = definedExternally,
+    format: String = definedExternally
+) {
     fun addImage(
         imageData: String,
         format: String,
@@ -18,7 +22,9 @@ external class jsPDF {
 
     fun save(filename: String)
 
-    fun addPage()
+    fun addPage(
+        format: String = definedExternally
+    )
 
     fun output(type: String): JsAny?
 }

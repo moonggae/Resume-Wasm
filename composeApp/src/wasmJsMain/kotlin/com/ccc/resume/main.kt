@@ -5,9 +5,10 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.window.ComposeViewport
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.ccc.resume.data.Ktor
 import com.ccc.resume.data.PDFRepository
+import com.ccc.resume.data.getOcrServerUrl
 import com.ccc.resume.ui.App
+import io.ktor.client.*
 import kotlinx.browser.document
 import kotlinx.browser.window
 
@@ -15,7 +16,7 @@ import kotlinx.browser.window
 fun main() {
     ComposeViewport(document.body!!) {
         val pdfViewModel: PDFDownloadViewModel = viewModel {
-            PDFDownloadViewModel(PDFRepository(Ktor.client))
+            PDFDownloadViewModel(PDFRepository(HttpClient(), getOcrServerUrl()))
         }
 
         val downloadState by pdfViewModel.uiState.collectAsStateWithLifecycle()

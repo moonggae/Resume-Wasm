@@ -1,8 +1,16 @@
 package com.ccc.resume.data
 
-import io.ktor.client.*
+import Resume.composeApp.BuildConfig
 
-object Ktor {
-    val client = HttpClient()
-    val host: String = "http://localhost:8081"
+fun getEnvOcrServerUrl(): String = js("window.env.OCR_SERVER")
+fun getOcrServerUrl(): String {
+    return (try {
+        getEnvOcrServerUrl()
+    } catch (e: Throwable) {
+        BuildConfig.OCR_SERVER
+    }).run {
+        if (startsWith("http")) this
+        else if (this.isBlank()) ""
+        else "http://$this"
+    }
 }

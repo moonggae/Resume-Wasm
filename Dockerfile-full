@@ -1,0 +1,19 @@
+FROM openjdk:17-jdk-slim
+WORKDIR /app
+
+# 1. 빌드 파일 복사
+COPY composeApp/build/dist/wasmJs/productionExecutable/ static/
+COPY server/build/install/server/ server/
+
+# 2. wasm에서 사용할 ktor url 주입
+RUN echo "window.env = { OCR_SERVER: '' };" >> static/env.js
+
+# 3. ocrmypdf 설치
+RUN apt-get update && \
+    apt-get install -y \
+    ocrmypdf \
+    tesseract-ocr-kor
+
+# 4. 실행
+EXPOSE 8081
+CMD ["./server/bin/server", "-allow", "all", "-static", "/app/static"]

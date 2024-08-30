@@ -40,8 +40,12 @@ class PDFDownloadViewModel(
             runCatching {
                 val images = renderPages(pages.map { page -> page.composable })
                 val originPDF = generatePDF(images)
-                val ocrPDF = repository.ocrPDFFile(originPDF, listOf("eng", "kor"))
-                downloadFile(ocrPDF.toBlob("application/pdf"), filename)
+                repository.ocrPDFFile(originPDF, listOf("eng", "kor"))
+                    .onSuccess { byteArray ->
+                        downloadFile(byteArray.toBlob("application/pdf"), filename)
+                    }.onFailure {
+                        downloadFile(originPDF.toBlob("application/pdf"), filename)
+                    }
             }.onSuccess {
                 _uiState.value = PDFDownloadUiState.Idle
             }.onFailure {
@@ -66,11 +70,11 @@ class PDFDownloadViewModel(
 
 
     private fun generatePDF(images: List<Image>): ByteArray {
-        val pdf = jsPDF()
+        val pdf = jsPDF(format = "a4")
 
         images.forEachIndexed { index, image ->
             if (index != 0) {
-                pdf.addPage()
+                pdf.addPage("a4")
             }
             addImageToPdf(pdf, image)
         }
@@ -103,16 +107,18 @@ class PDFDownloadViewModel(
             PDF_WIDTH,
             PDF_HEIGHT,
             "",
-            "MEDIUM",
+            "Fast",
             0
         )
     }
 
     companion object PdfConstants {
         const val PDF_WIDTH = 210f
-        const val PDF_HEIGHT = 297f // A4 height
-        const val RENDER_WIDTH = 2000
-        const val RENDER_HEIGHT = 2828 // Approximately A4 ratio
+        const val PDF_HEIGHT = 297f
+//        const val RENDER_WIDTH = 2000
+//        const val RENDER_HEIGHT = 2828 // Approximately A4 ratio
+        const val RENDER_WIDTH = 1800
+        const val RENDER_HEIGHT = (1800 * 1.414).toInt()
         const val DENSITY_SCALE = 2f
     }
 }

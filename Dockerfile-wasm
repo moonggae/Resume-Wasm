@@ -1,0 +1,5 @@
+FROM nginx:alpine
+COPY composeApp/build/dist/wasmJs/productionExecutable/ /usr/share/nginx/html/
+RUN echo "window.env = {};" >> /usr/share/nginx/html/env.js
+EXPOSE 80
+CMD /bin/sh -c "echo \"window.env.OCR_SERVER = '$OCR_SERVER';\" >> /usr/share/nginx/html/env.js && nginx -g 'daemon off;'"

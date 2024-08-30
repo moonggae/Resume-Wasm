@@ -1,7 +1,15 @@
+import org.jetbrains.compose.internal.utils.getLocalProperty
+
 plugins {
     alias(libs.plugins.kotlinJvm)
     alias(libs.plugins.ktor)
     application
+    id("com.github.gmazzo.buildconfig") version "5.4.0"
+}
+
+buildConfig {
+    buildConfigField("OCR_SERVER_HOST", getLocalProperty("OCR_SERVER_HOST") ?: "0.0.0.0")
+    buildConfigField("OCR_SERVER_PORT", getLocalProperty("OCR_SERVER_PORT") ?: "8081")
 }
 
 group = "com.ccc.resume"
@@ -19,4 +27,9 @@ dependencies {
     implementation(libs.ktor.server.cors)
     testImplementation(libs.ktor.server.tests)
     testImplementation(libs.kotlin.test.junit)
+}
+
+tasks.register("runAll") {
+    dependsOn(tasks.getByPath(":composeApp:wasmJsDevelopmentExecutableCompileSync"))
+    dependsOn(tasks.run)
 }

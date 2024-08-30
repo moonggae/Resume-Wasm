@@ -1,3 +1,4 @@
+import org.jetbrains.compose.internal.utils.getLocalProperty
 import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 
 plugins {
@@ -5,6 +6,20 @@ plugins {
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlinx.serialization)
+    id("com.github.gmazzo.buildconfig") version "5.4.0"
+}
+
+buildConfig {
+    fun getOcrServer(): String {
+        var host = getLocalProperty("OCR_SERVER_HOST")
+        if (host == "0.0.0.0") { host = "localhost" }
+        val port = getLocalProperty("OCR_SERVER_PORT")
+        return if (host.isNullOrBlank()) ""
+        else if (port.isNullOrBlank()) host
+        else "$host:$port"
+    }
+
+    buildConfigField("OCR_SERVER", getOcrServer())
 }
 
 kotlin {
@@ -53,4 +68,8 @@ compose.resources {
     publicResClass = true
     packageOfResClass = "com.ccc.resume.resources"
     generateResClass = always
+}
+
+tasks.register("runAll") {
+    dependsOn(tasks.getByPath("wasmJsDevelopmentExecutableCompileSync"))
 }

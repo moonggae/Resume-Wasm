@@ -1,9 +1,11 @@
 package com.ccc.resume
 
+import com.ccc.resume.server.BuildConfig
 import io.ktor.http.*
 import io.ktor.http.content.*
 import io.ktor.server.application.*
 import io.ktor.server.engine.*
+import io.ktor.server.http.content.*
 import io.ktor.server.netty.*
 import io.ktor.server.plugins.cors.routing.*
 import io.ktor.server.request.*
@@ -12,20 +14,32 @@ import io.ktor.server.routing.*
 import java.io.File
 import java.util.*
 
-fun main() {
-    embeddedServer(Netty, port = 8081, host = "localhost", module = Application::module)
-        .start(wait = true)
+fun main(args: Array<String>) {
+    embeddedServer(
+        factory = Netty,
+        port = BuildConfig.OCR_SERVER_PORT.toInt(),
+        host = BuildConfig.OCR_SERVER_HOST,
+        module = { module(args) }
+    ).start(wait = true)
 }
 
-fun Application.module() {
+fun Application.module(args: Array<String>) {
     install(CORS) {
-        allowHost("localhost:8080")
+        val originArg = args.getOrNull(args.indexOf("-allow") + 1) ?: "all"
+        when (originArg.lowercase()) {
+            "all" -> { anyHost() }
+            "same" -> { allowSameOrigin = true }
+            else -> { allowHost(originArg) }
+        }
         maxAgeInSeconds = 10
     }
 
-
     environment.monitor.subscribe(ApplicationStarted) { application ->
         try {
+            args.forEach {
+                application.environment.log.info(it)
+            }
+
             if (!checkAndCreateUploadsDirectory()) throw Exception("Can't create directory: Uploads")
             if (!checkProgramInstalled("ocrmypdf")) throw Exception("Can't find ocrmypdf")
             if (!checkProgramInstalled("tesseract")) throw Exception("Can't find tesseract")
@@ -35,6 +49,17 @@ fun Application.module() {
     }
 
     routing {
+        val staticOptionIndex = args.indexOf("-static")
+        val staticFilePath = args.getOrNull(staticOptionIndex + 1)
+
+        if (staticOptionIndex > -1 && !staticFilePath.isNullOrBlank()) {
+            staticFiles(
+                remotePath = "/",
+                dir = File(staticFilePath),
+                index = "index.html"
+            )
+        }
+
         post("/ocr") {
             val (inputFile, languages) = parseMultiParts(call.receiveMultipart())
             val outputFile = File("uploads/${UUID.randomUUID()}.pdf")
@@ -45,6 +70,7 @@ fun Application.module() {
                 if (exitCode == 0 || exitCode == 10) {
                     call.respondFile(outputFile)
                 } else {
+                    call.application.environment.log.error("Fail to ocr: exitCode: $exitCode")
                     call.respondText("Fail to ocr", status = HttpStatusCode.InternalServerError)
                 }
             } else {
